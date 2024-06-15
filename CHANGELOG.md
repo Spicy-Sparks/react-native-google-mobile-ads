@@ -1,3 +1,52 @@
+## [13.5.0](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.4.0...v13.5.0) (2024-05-21)
+
+
+### Features
+
+* add method to reload banner ad ([2a57487](https://github.com/invertase/react-native-google-mobile-ads/commit/2a574874624af515d6ecfc8819385ab4c6c73912))
+
+## [13.4.0](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.3.1...v13.4.0) (2024-05-20)
+
+
+### Features
+
+* **deps:** mobile ads sdk upgrade - ios 11.5.0 android 23.1.0 ([a34c7ba](https://github.com/invertase/react-native-google-mobile-ads/commit/a34c7bae6e8f607f9fe22c8f63264600662a3dd8))
+
+### [13.3.1](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.3.0...v13.3.1) (2024-05-19)
+
+
+### Bug Fixes
+
+* topNative name changed to topNativeEvent. ([b4cbea3](https://github.com/invertase/react-native-google-mobile-ads/commit/b4cbea3cbff42bdae7a630bd7daf03ebb1fca49c))
+* Typescript error in the docs ([4ad8bc7](https://github.com/invertase/react-native-google-mobile-ads/commit/4ad8bc7a967040eecc60a2ad631bc14c2cada443))
+
+## [13.3.0](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.2.1...v13.3.0) (2024-05-13)
+
+
+### Features
+
+* **android:** Add support for ArrayList ([7303730](https://github.com/invertase/react-native-google-mobile-ads/commit/7303730a702ff2141be8fd417d7977ccf07f463c))
+
+### [13.2.1](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.2.0...v13.2.1) (2024-05-02)
+
+
+### Bug Fixes
+
+* **banner, ios:** banner not destroyed in new arch ([2d8bdb5](https://github.com/invertase/react-native-google-mobile-ads/commit/2d8bdb562c9ecd968e11bad73310874ecf5b82ec))
+* **banner, ios:** fixed memory leak ([5cbf0e9](https://github.com/invertase/react-native-google-mobile-ads/commit/5cbf0e9f785107a33e5b3569c13cff5e5d186c8a))
+
+## [13.2.0](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.1.0...v13.2.0) (2024-04-03)
+
+
+### Features
+
+* add FLUID size support ([c09a326](https://github.com/invertase/react-native-google-mobile-ads/commit/c09a3267ecfbedc9b7ad66f68967e480e9fe09ad))
+
+
+### Bug Fixes
+
+* android build error 'onAdLoaded' overrides nothing ([bd52c12](https://github.com/invertase/react-native-google-mobile-ads/commit/bd52c12b2c9edbf92a809f814a0c1b4ca8b3e492))
+
 ## [13.1.0](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.0.2...v13.1.0) (2024-03-26)
 
 

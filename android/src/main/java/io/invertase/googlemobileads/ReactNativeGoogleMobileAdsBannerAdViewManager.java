@@ -31,7 +31,6 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.UIManagerHelper;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.EventDispatcher;
-import com.facebook.react.views.view.ReactViewGroup;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -63,6 +62,7 @@ public class ReactNativeGoogleMobileAdsBannerAdViewManager
   private final String EVENT_SIZE_CHANGE = "onSizeChange";
   private final String EVENT_APP_EVENT = "onAppEvent";
   private final int COMMAND_ID_RECORD_MANUAL_IMPRESSION = 1;
+  private final int COMMAND_ID_LOAD = 2;
 
   @Nonnull
   @Override
@@ -86,7 +86,9 @@ public class ReactNativeGoogleMobileAdsBannerAdViewManager
   @Nullable
   @Override
   public Map<String, Integer> getCommandsMap() {
-    return MapBuilder.of("recordManualImpression", COMMAND_ID_RECORD_MANUAL_IMPRESSION);
+    return MapBuilder.of(
+        "recordManualImpression", COMMAND_ID_RECORD_MANUAL_IMPRESSION,
+        "load", COMMAND_ID_LOAD);
   }
 
   @Override
@@ -100,6 +102,10 @@ public class ReactNativeGoogleMobileAdsBannerAdViewManager
       if (adView instanceof AdManagerAdView) {
         ((AdManagerAdView) adView).recordManualImpression();
       }
+    } else if (commandIdInt == COMMAND_ID_LOAD) {
+      BaseAdView adView = getAdView(reactViewGroup);
+      AdRequest request = reactViewGroup.getRequest();
+      adView.loadAd(request);
     }
   }
 
@@ -131,7 +137,7 @@ public class ReactNativeGoogleMobileAdsBannerAdViewManager
       }
     }
 
-    if (sizeList.size() > 0) {
+    if (sizeList.size() > 0 && !sizeList.contains(AdSize.FLUID)) {
       AdSize adSize = sizeList.get(0);
       WritableMap payload = Arguments.createMap();
       payload.putDouble("width", adSize.getWidth());
@@ -211,21 +217,27 @@ public class ReactNativeGoogleMobileAdsBannerAdViewManager
           @Override
           public void onAdLoaded() {
             AdSize adSize = adView.getAdSize();
-            int left, top, width, height;
+            int width, height;
             if (reactViewGroup.getIsFluid()) {
-              // TODO size=FLUID is still not working
-              left = 0;
-              top = 0;
               width = reactViewGroup.getWidth();
               height = reactViewGroup.getHeight();
+
+              adView.addOnLayoutChangeListener(
+                  (v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+                    WritableMap payload = Arguments.createMap();
+                    payload.putDouble("width", PixelUtil.toDIPFromPixel(right - left));
+                    payload.putDouble("height", PixelUtil.toDIPFromPixel(bottom - top));
+                    sendEvent(reactViewGroup, EVENT_SIZE_CHANGE, payload);
+                  });
             } else {
-              left = adView.getLeft();
-              top = adView.getTop();
+              int left = adView.getLeft();
+              int top = adView.getTop();
               width = adSize.getWidthInPixels(reactViewGroup.getContext());
               height = adSize.getHeightInPixels(reactViewGroup.getContext());
+
+              adView.measure(width, height);
+              adView.layout(left, top, left + width, top + height);
             }
-            adView.measure(width, height);
-            adView.layout(left, top, left + width, top + height);
 
             WritableMap payload = Arguments.createMap();
             payload.putDouble("width", PixelUtil.toDIPFromPixel(width));
@@ -269,7 +281,7 @@ public class ReactNativeGoogleMobileAdsBannerAdViewManager
   }
 
   @Nullable
-  private BaseAdView getAdView(ReactViewGroup reactViewGroup) {
+  private BaseAdView getAdView(ViewGroup reactViewGroup) {
     return (BaseAdView) reactViewGroup.getChildAt(0);
   }
 
@@ -290,10 +302,9 @@ public class ReactNativeGoogleMobileAdsBannerAdViewManager
       if (adView instanceof AdManagerAdView) {
         if (sizes.contains(AdSize.FLUID)) {
           reactViewGroup.setIsFluid(true);
-          ((AdManagerAdView) adView).setAdSizes(AdSize.FLUID);
-        } else {
-          ((AdManagerAdView) adView).setAdSizes(sizes.toArray(new AdSize[0]));
         }
+        ((AdManagerAdView) adView).setAdSizes(sizes.toArray(new AdSize[0]));
+
         if (manualImpressionsEnabled) {
           ((AdManagerAdView) adView).setManualImpressionsEnabled(true);
         }
