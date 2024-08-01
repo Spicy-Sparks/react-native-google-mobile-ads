@@ -74,23 +74,24 @@ project.ext {
 
 apply from: file("./app-json.gradle")
 
-def appJSONGoogleMobileAdsAppIDString
+def isManagedExpoProject = !rootProject.file("android").exists() && !rootProject.file("ios").exists()
+def appJSONGoogleMobileAdsAppIDString = ""
 def appJSONGoogleMobileAdsDelayAppMeasurementInitBool = false
 def appJSONGoogleMobileAdsOptimizeInitializationBool = true
 def appJSONGoogleMobileAdsOptimizeAdLoadingBool = true
 
-if (rootProject.ext.googleMobileAdsJson) {
+if (rootProject.ext.has("googleMobileAdsJson")) {
   appJSONGoogleMobileAdsAppIDString = rootProject.ext.googleMobileAdsJson.getStringValue("android_app_id", "")
   appJSONGoogleMobileAdsDelayAppMeasurementInitBool = rootProject.ext.googleMobileAdsJson.isFlagEnabled("delay_app_measurement_init", false)
   appJSONGoogleMobileAdsOptimizeInitializationBool = rootProject.ext.googleMobileAdsJson.isFlagEnabled("optimize_initialization", true)
   appJSONGoogleMobileAdsOptimizeAdLoadingBool = rootProject.ext.googleMobileAdsJson.isFlagEnabled("optimize_ad_loading", true)
 }
 
-if (!appJSONGoogleMobileAdsAppIDString) {
+if (!appJSONGoogleMobileAdsAppIDString && !isManagedExpoProject) {
   println "\n\n\n"
   println "**************************************************************************************************************"
   println "\n\n\n"
-  println "ERROR: react-native-google-mobile-ads requires an 'android_app_id' property inside a 'react-native-google-mobile-ads' key in your app.json or app.config.js."
+  println "ERROR: react-native-google-mobile-ads requires an 'android_app_id' property inside a 'react-native-google-mobile-ads' key in your app.json."
   println "  No android_app_id property was found in this location. The native Google Mobile Ads SDK will crash on startup without it."
   println "\n\n\n"
   println "**************************************************************************************************************"

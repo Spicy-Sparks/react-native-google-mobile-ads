@@ -1,3 +1,66 @@
+### [14.2.1](https://github.com/invertase/react-native-google-mobile-ads/compare/v14.2.0...v14.2.1) (2024-07-26)
+
+
+### Bug Fixes
+
+* expo managed project detection ([79acdc2](https://github.com/invertase/react-native-google-mobile-ads/commit/79acdc230bff5dd12d44b269f7dadd485a40496e))
+
+## [14.2.0](https://github.com/invertase/react-native-google-mobile-ads/compare/v14.1.0...v14.2.0) (2024-07-23)
+
+
+### Features
+
+* **video:** add support for video ad volume control ([c1d821d](https://github.com/invertase/react-native-google-mobile-ads/commit/c1d821d82c546e4e00db4865f9c3159cb7bcd495))
+
+## [14.1.0](https://github.com/invertase/react-native-google-mobile-ads/compare/v14.0.1...v14.1.0) (2024-07-16)
+
+
+### Features
+
+* **deps:** mobile ads sdk upgrade - ios 11.7.0 android 23.2.0 ([5f0486f](https://github.com/invertase/react-native-google-mobile-ads/commit/5f0486f4fd10f59cfdf094617107abfeed90e9c3))
+
+### [14.0.1](https://github.com/invertase/react-native-google-mobile-ads/compare/v14.0.0...v14.0.1) (2024-07-12)
+
+
+### Bug Fixes
+
+* **android:** replace deprecated onCatalystInstanceDestroy method ([816c269](https://github.com/invertase/react-native-google-mobile-ads/commit/816c2691d0c3f511e8f5af66e5a44493e80ea95b))
+
+## [14.0.0](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.6.1...v14.0.0) (2024-07-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add expo config plugin
+
+### Features
+
+* Add expo config plugin ([848348f](https://github.com/invertase/react-native-google-mobile-ads/commit/848348f747d711a9eeea5a4ed9ede6e4b0e90d45))
+
+### [13.6.1](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.6.0...v13.6.1) (2024-07-04)
+
+
+### Bug Fixes
+
+* **android:** commands mapped incorrectly ([cf9ee6e](https://github.com/invertase/react-native-google-mobile-ads/commit/cf9ee6ef93ec635c738f7dc2420ace67ffa52fdd))
+
+## [13.6.0](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.5.0...v13.6.0) (2024-07-04)
+
+
+### Features
+
+* make reloading a banner on foreground easier with a hook ([af5ca02](https://github.com/invertase/react-native-google-mobile-ads/commit/af5ca02702a1a9fa3c6efbd0788aed24ebb3f91c))
+
+
+### Bug Fixes
+
+* **types:** update react-native dev dep, forward-port typings ([dbb0208](https://github.com/invertase/react-native-google-mobile-ads/commit/dbb0208d19cbb88be2069689dba258cd0edf7e04))
+
+
+### Performance Improvements
+
+* **ci:** avoid big globs in hashFiles ([3093345](https://github.com/invertase/react-native-google-mobile-ads/commit/3093345f12a37e4c3c9cf85d83ddf18f13796690))
+
 ## [13.5.0](https://github.com/invertase/react-native-google-mobile-ads/compare/v13.4.0...v13.5.0) (2024-05-21)
 
 
