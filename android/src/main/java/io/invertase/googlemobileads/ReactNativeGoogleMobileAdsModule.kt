@@ -23,6 +23,7 @@ import com.google.android.gms.ads.initialization.InitializationStatus
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener
 import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.AdInspectorError
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.OnAdInspectorClosedListener
 
 private const val SERVICE = "RNGoogleMobileAdsModule";
@@ -142,15 +143,18 @@ class ReactNativeGoogleMobileAdsModule(
             promise.resolve(null);
           }
         }
+      )
     }
-    )
   }
 
 
   @ReactMethod
   fun openDebugMenu(adUnit: String) {
-    currentActivity?.runOnUiThread {
-      MobileAds.openDebugMenu(currentActivity, adUnit)
+    val activity = currentActivity
+    if(activity != null) {
+      activity.runOnUiThread {
+        MobileAds.openDebugMenu(activity, adUnit)
+      }
     }
   }
 
