@@ -8,6 +8,7 @@
       [
         ["Getting Started", "/"],
         ["Displaying Ads", "/displaying-ads"],
+        ["Native Ads", "/native-ads"],
         ["Common Reasons For Ads Not Showing", "/common-reasons-for-ads-not-showing"]
       ]
     ],
@@ -18,7 +19,8 @@
         ["European User Consent", "/european-user-consent"],
         ["Ad Inspector", "/ad-inspector"],
         ["Impression-level ad revenue", "/impression-level-ad-revenue"],
-        ["Video ad volume control", "/video-ad_volume-control"]
+        ["Video ad volume control", "/video-ad_volume-control"],
+        ["Testing", "/testing"]
       ]
     ],
     [
