@@ -31,7 +31,7 @@ import com.facebook.react.viewmanagers.RNGoogleMobileAdsNativeViewManagerInterfa
 @ReactModule(name = ReactNativeGoogleMobileAdsNativeAdViewManager.NAME)
 class ReactNativeGoogleMobileAdsNativeAdViewManager(
   reactContext: ReactApplicationContext
-) : ViewGroupManager<ReactNativeGoogleMobileAdsNativeAdView>(reactContext),
+) : ViewGroupManager<ReactNativeGoogleMobileAdsNativeAdView>(),
   RNGoogleMobileAdsNativeViewManagerInterface<ReactNativeGoogleMobileAdsNativeAdView> {
   private val delegate: ViewManagerDelegate<ReactNativeGoogleMobileAdsNativeAdView> = RNGoogleMobileAdsNativeViewManagerDelegate(this)
 
